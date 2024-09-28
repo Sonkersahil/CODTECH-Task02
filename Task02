@@ -1,0 +1,55 @@
+/*Grade & marks calculator of various subjects*/
+
+# Function to calculate the average grade
+def calculate_average(grades):
+    return sum(grades) / len(grades) if grades else 0
+
+# Function to determine letter grade based on average
+def get_letter_grade(average):
+    if average >= 90:
+        return 'A'
+    elif average >= 80:
+        return 'B'
+    elif average >= 70:
+        return 'C'
+    elif average >= 60:
+        return 'D'
+    else:
+        return 'F'
+
+# Function to determine GPA based on letter grade
+def get_gpa(letter_grade):
+    gpa_scale = {'A': 4.0, 'B': 3.0, 'C': 2.0, 'D': 1.0, 'F': 0.0}
+    return gpa_scale.get(letter_grade, 0.0)
+
+# Main program to input grades and calculate average, letter grade, and GPA
+def main():
+    student_grades = {}
+    total_grades = []
+
+    while True:
+        subject = input("Enter the subject (or type 'done' to finish): ")
+        if subject.lower() == 'done':
+            break
+        grade = float(input(f"Enter the grade for {subject}: "))
+        student_grades[subject] = grade
+        total_grades.append(grade)
+
+    if total_grades:
+        average = calculate_average(total_grades)
+        letter_grade = get_letter_grade(average)
+        gpa = get_gpa(letter_grade)
+
+        print("\nStudent Grades:")
+        for subject, grade in student_grades.items():
+            print(f"{subject}: {grade}")
+
+        print(f"\nAverage Grade: {average:.2f}")
+        print(f"Letter Grade: {letter_grade}")
+        print(f"GPA: {gpa:.2f}")
+    else:
+        print("No grades entered.")
+
+# Run the program
+if __name__ == "__main__":
+    main()
